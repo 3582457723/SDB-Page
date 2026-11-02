@@ -1,23 +1,114 @@
 body {
-      margin: 0;
-      height: 100vh;
-      /* 3色以上のグラデーションを設定 */
-      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-      /* 背景のサイズを大きくして動く余裕を作る */
-      background-size: 400% 400%;
-      /* アニメーションの指定：15秒かけて無限にループ */
-      animation: gradientMove 15s ease infinite;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+
+  /* 3つのグラデーションの波を重ね、一番下に深い青のベースを配置 */
+  background: 
+    /* 1. 白い光の波（最前面） */
+    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 50%),
+    /* 2. 明るい水色の波 */
+    radial-gradient(circle at 60% 70%, rgba(0, 191, 255, 0.4) 0%, rgba(0, 191, 255, 0) 60%),
+    /* 3. 青い光の波 */
+    radial-gradient(circle at 30% 80%, rgba(0, 102, 255, 0.5) 0%, rgba(0, 102, 255, 0) 70%),
+    /* 基盤となる紺色のグラデーション */
+    linear-gradient(135deg, #002266 0%, #000511 100%);
+
+  /* それぞれの波を大きく引き伸ばす */
+  background-size: 
+    200% 200%,
+    250% 250%,
+    300% 300%,
+    100% 100%;
+
+  /* 3つの波にそれぞれスピードと動きの異なるアニメーションを適用 */
+  animation: 
+    moveWhiteWave 18s ease-in-out infinite alternate,
+    moveCyanWave 25s ease-in-out infinite alternate,
+    moveBlueWave 32s ease-in-out infinite alternate;
+}
+
+/* 白い波の動き（細かく揺らめく） */
+@keyframes moveWhiteWave {
+  0% { background-position: 0% 10%; }
+  50% { background-position: 30% 50%; }
+  100% { background-position: 10% 80%; }
+}
+
+/* 水色の波の動き（ゆったりと大きく動く） */
+@keyframes moveCyanWave {
+  0% { background-position: 80% 90%; }
+  50% { background-position: 40% 30%; }
+  100% { background-position: 90% 10%; }
+}
+
+/* 青い波の動き（一番奥でどっしり動く） */
+@keyframes moveBlueWave {
+  0% { background-position: 20% 80%; }
+  50% { background-position: 60% 40%; }
+  100% { background-position: 10% 20%; }
+}
+
+/* ヘッダー全体のコンテナ（黒いバー） */
+    .header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* 両端に要素を分散配置 */
+      background-color: #000000;
+      height: 60px;
+      padding: 0 5px 0 20px; /* 右端の青ボタンが綺麗に収まるように調整 */
+      border-radius: 30px; /* 両端を完全な丸みにする */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 軽い影（お好みで） */
     }
 
-    /* 背景の位置を移動させるキーフレーム */
-    @keyframes gradientMove {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+    /* ロゴエリア */
+    .header-logo img {
+      height: 35px; /* バーの高さに合わせてロゴサイズを調整 */
+      display: block;
+    }
+
+    /* ナビゲーションメニュー全体のレイアウト */
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px; /* メニュー間の余白 */
+      margin-left: auto; /* メニュー全体を右側に寄せる */
+      margin-right: 40px; /* 右側の青ボタンとの間隔 */
+    }
+
+    /* 通常のメニューリンク（Home, Features, FAQ） */
+    .nav-item {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      transition: opacity 0.2s ease;
+    }
+
+    /* マウスホバー時に少し透明にするエフェクト */
+    .nav-item:hover {
+      opacity: 0.8;
+    }
+
+    /* BUY REQUEST ボタン（青いカプセル型） */
+    .btn-buy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom, #4a90e2, #357abd); /* 画像のような若干のグラデーション */
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      height: 50px; /* 黒いバー（60px）より少し小さくして上下に隙間を作る */
+      padding: 0 35px;
+      border-radius: 25px; /* カプセル型にする丸み */
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2); /* ボタンの内側の軽い光沢 */
+      transition: background 0.2s ease;
+    }
+
+    /* ボタンのマウスホバー時 */
+    .btn-buy:hover {
+      background: linear-gradient(to bottom, #549cf0, #3d86cc);
     }
