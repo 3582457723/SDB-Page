@@ -1,0 +1,97 @@
+/* フッターコンテナ全体（角丸の黒いボックス） */
+    .footer-bar {
+      max-width: 1100px; /* 他のセクションと横幅を合わせる */
+      margin: 0 auto;
+      background-color: #040c5a;
+      border-radius: 24px; /* ヘッダーやヒーローに合わせた角丸 */
+      padding: 35px 40px 20px 40px;
+      box-sizing: border-box;
+      color: #ffffff;
+    }
+
+    /* 上部エリア（ロゴとメニューの横並び） */
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 120px; /* ロゴとメニューの間の余白 */
+      margin-bottom: 25px;
+    }
+
+    /* ロゴ */
+    .footer-logo img {
+      width: 45px; /* 画像のサイズ感に調整 */
+      display: block;
+    }
+
+    /* メニューリスト */
+    .footer-nav {
+      display: flex;
+      flex-direction: column; /* 縦並び */
+      gap: 8px; /* メニューごとの上下の隙間 */
+    }
+
+    /* メニューのリンク */
+    .footer-nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 20px; /* 画像に合わせたやや大きめのフォント */
+      font-weight: 700;
+      transition: opacity 0.2s ease;
+    }
+
+    .footer-nav-link:hover {
+      opacity: 0.8;
+    }
+
+    /* 中央を区切る青い線（グラデーション） */
+    .footer-divider {
+      height: 2px;
+      background: linear-gradient(90deg, #4a90e2 0%, #002266 100%);
+      border: none;
+      margin: 0 0 15px 0;
+    }
+
+    /* 下部エリア（コピーライトと規約の横並び） */
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between; /* 両端に分散 */
+      align-items: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* コピーライト */
+    .copyright {
+      color: #ffffff;
+    }
+
+    /* 規約リンクのエリア */
+    .footer-legal {
+      display: flex;
+      gap: 10px;
+      color: #ffffff;
+    }
+
+    .footer-legal a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .footer-legal a:hover {
+      opacity: 0.8;
+    }
+
+    /* スマホ対応（画面が狭いときは縦並びに） */
+    @media (max-width: 768px) {
+      .footer-top {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+    }
