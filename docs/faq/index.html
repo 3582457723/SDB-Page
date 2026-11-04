@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html lang = ja>
+    <head>
+        <title>SDS Offical Web site</title>
+        <link rel="icon" href="images/Footer-SDS.png">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/comparison.css">
+        <link rel="stylesheet" href="css/footer.css">
+    </head>
+    <body>
+        <div style="height: 5px;"></div>
+        <header class="header-bar">
+        <!-- ロゴ -->
+        <div class="header-logo">
+        <a href="./"><img src="images/SDS.png" alt="SDS Logo"></a>
+        </div>
+
+        <!-- ナビゲーションリンク -->
+        <nav class="header-nav">
+            <a href="./" class="nav-item">Home</a>
+            <a href="./features/" class="nav-item">Features</a>
+            <a href="./faq/" class="nav-item">FAQ</a>
+        </nav>
+
+    <!-- 購入リクエストボタン -->
+        <a href="./buy/" class="btn-buy">BUY REQUEST</a>
+        </header>
+
+        <div style="height: 25px;"></div>
+        <div class="hero-container">
+    
+            <!-- 左側：イメージ画像 -->
+            <div class="hero-image-box">
+                <img src="./images/hero/hero-server1.png" alt="Server Rack Image">
+            </div>
+
+            <!-- 右側：テキストコンテンツ -->
+            <div class="hero-text-box">
+                <h1 class="hero-title">About to SDS</h1>
+                <p class="hero-description">
+                    SDS(Secure Database Script)とは、個人情報や最重要機密文書を取り扱うデータベース向けのデータベースエンジンです。わかりやすいロールシステムや暗号化により高い機密性や安全性を保証します。
+                </p>
+            </div>
+
+        </div>
+
+        <div style="height: 25px;"></div>
+        <hr>
+        <div style="height: 25px;"></div>
+
+        <section class="comparison-section">
+            <h2 class="comparison-title">Comparison</h2>
+
+        <!-- レスポンス対応用コンテナ -->
+        <div class="table-responsive">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>比較項目</th>
+                        <th>MySQL /<br>PostgreSQL</th>
+                        <th>O社 (Oracle)</th>
+                        <th>M社SQL (SQL<br>Server)</th>
+                        <th>SQLite</th>
+                        <th>M社Access</th>
+                        <th class="col-sds-header">SDS (Secure<br>Database Script)</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        <!-- 1行目 -->
+                        <tr>
+                            <th>データモデル</th>
+                            <td>RDBMS（リレーショナル）</td>
+                            <td>RDBMS（エンタープライズ）</td>
+                            <td>RDBMS（エンタープライズ）</td>
+                            <td>軽量RDBMS（ファイル型）</td>
+                            <td>デスクトップRDBMS</td>
+                            <td class="col-sds-data">独自JSONベース<br>（汎用型）</td>
+                        </tr>
+                        <!-- 2行目 -->
+                        <tr>
+                            <th>保存時の暗号化<br>(Data at Rest)</th>
+                            <td>TDE（オプション設定）</td>
+                            <td>高度なTDEに対応</td>
+                            <td>TDE / Always Encrypted</td>
+                            <td>SQLCipher等（拡張依存）</td>
+                            <td>ファイルパスワード保護</td>
+                            <td class="col-sds-data">RHO Algorism<br>（確率的暗号化・標準強制）</td>
+                        </tr>
+                        <!-- 3行目 -->
+                        <tr>
+                            <th>通信時の保護<br>(Data in Transit)</th>
+                            <td>標準TLS/SSL接続</td>
+                            <td>TLS / 独自プロトコル対応</td>
+                            <td>標準TLS/SSL接続</td>
+                            <td>なし（ローカル完結）</td>
+                            <td>なし（ローカル/SMB共有）</td>
+                            <td class="col-sds-data">SPA + 独自ポリモーフィック変異 + RSA-OAEP</td>
+                        </tr>
+                        <!-- 4行目 -->
+                        <tr>
+                            <th>メモリ上の保護<br>(Data in Use)</th>
+                            <td><span class="text-alert">メモリダンプで平文露出</span></td>
+                            <td>一部対応（専用ハード依存）</td>
+                            <td>Always Encrypted（エンクレーブ）</td>
+                            <td><span class="text-alert">平文展開</span></td>
+                            <td><span class="text-alert">平文展開</span></td>
+                            <td class="col-sds-data">Zero-Dwell Memory<br>（即時破棄・FHE演算）</td>
+                        </tr>
+                        <!-- 5行目 -->
+                        <tr>
+                            <th>インジェクション耐性</th>
+                            <td>プリペアドステートメント依存</td>
+                            <td>プリペアドステートメント依存</td>
+                            <td>プリペアドステートメント依存</td>
+                            <td>プリペアドステートメント依存</td>
+                            <td><span class="text-alert">VBAマクロ等の脆弱性リスク</span></td>
+                            <td class="col-sds-data">ASTハッシュ検証により構造的に完全排除</td>
+                        </tr>
+                        <!-- 6行目 -->
+                        <tr>
+                            <th>アクセス・権限制御</th>
+                            <td>DBユーザー/ロールベース</td>
+                            <td>高度な粒度の権限管理</td>
+                            <td>AD連携/ロールベース</td>
+                            <td>OSのファイル権限依存</td>
+                            <td>OS権限/簡易パスワード</td>
+                            <td class="col-sds-data">マルチシグ（M of N）承認<br>+ TEE/TPM検証</td>
+                        </tr>
+                        <!-- 7行目 -->
+                        <tr>
+                            <th>主要な用途</th>
+                            <td>汎用的なWebシステム等</td>
+                            <td>大規模な基幹システム</td>
+                            <td>企業向け業務システム</td>
+                            <td>アプリ内蔵 / エッジ端末</td>
+                            <td>個人・小規模オフィス業務</td>
+                            <td class="col-sds-data">機密データ保護 / ゼロトラスト環境のコア基盤</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div style="height: 25px;"></div>
+        <hr>
+        <div style="height: 25px;"></div>
+
+        <footer class="footer-bar">
+    
+            <!-- 上部：ロゴとメニュー -->
+            <div class="footer-top">
+            <div class="footer-logo">
+                <a href="./"><img src="images/Footer-SDS.png" alt="SDS Logo"></a>
+            </div>
+                <nav class="footer-nav">
+                    <a href="./" class="footer-nav-link">Home</a>
+                    <a href="./features/" class="footer-nav-link">Features</a>
+                    <a href="./buy/" class="footer-nav-link">Buy request</a>
+                    <a href="./faq/" class="footer-nav-link">FAQ</a>
+                </nav>
+            </div>
+
+            <!-- 区切り線 -->
+            <hr class="footer-divider">
+
+            <!-- 下部：コピーライトと各種規約 -->
+            <div class="footer-bottom">
+                <div class="copyright">
+                    Copyright 2026 Altice-Works Co.,Ltd.
+                </div>
+                <div class="footer-legal">
+                    <a href="./terms/">利用規約</a>
+                    <span>｜</span>
+                    <a href="./privacy/">プライバシーポリシー</a>
+                </div>
+            </div>
+
+        </footer>
+    </body>
+</html>
