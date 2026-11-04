@@ -306,15 +306,20 @@ body {
     }
 
     pre {
-            background-color: #f4f4f4;
             border: 1px solid #ddd;
             padding: 15px;
             border-radius: 8px;
             overflow-x: auto;
         }
+    
     code {
       font-family: 'Courier New', Courier, monospace;
       border-radius: 8px;
       background-color: #000000;
       color: #ffffff;
+    }
+
+    .codespace {
+      background-color: #000000;
+      border-radius: 8px;
     }
