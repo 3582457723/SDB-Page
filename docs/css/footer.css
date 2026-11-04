@@ -1,9 +1,9 @@
 /* フッターコンテナ全体（角丸の黒いボックス） */
     .footer-bar {
-      max-width: 1100px; /* 他のセクションと横幅を合わせる */
+      max-width: 85%; /* 他のセクションと横幅を合わせる */
       margin: 0 auto;
       background-color: #040c5a;
-      border-radius: 24px; /* ヘッダーやヒーローに合わせた角丸 */
+      border-radius: 12px; /* ヘッダーやヒーローに合わせた角丸 */
       padding: 35px 40px 20px 40px;
       box-sizing: border-box;
       color: #ffffff;
@@ -20,7 +20,7 @@
 
     /* ロゴ */
     .footer-logo img {
-      width: 45px; /* 画像のサイズ感に調整 */
+      width: 450px; /* 画像のサイズ感に調整 */
       display: block;
     }
 
