@@ -2,7 +2,6 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  overflow: hidden;
 
   /* 3つのグラデーションの波を重ね、一番下に深い青のベースを配置 */
   background: 
@@ -155,7 +154,6 @@ body {
             background: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
         }
 
         table {
