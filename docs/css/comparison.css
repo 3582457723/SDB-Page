@@ -19,8 +19,6 @@
     /* スマホ等で表がはみ出さないためのスクロールコンテナ */
     .table-responsive {
       width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
       border-radius: 12px; /* テーブル自体の角丸 */
     }
 
