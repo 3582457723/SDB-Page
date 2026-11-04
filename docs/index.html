@@ -45,115 +45,87 @@
         
         <div class="hero">
             <h2>Comparison</h2>
-        <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>比較項目</th>
-                    <th class="sds-header">🛡️ SDS<br><span style="font-size:0.7em; font-weight:normal;">(Secure Database Script)</span></th>
-                    <th>MySQL</th>
-                    <th>PostgreSQL</th>
-                    <th>O社 (Oracle)</th>
-                    <th>M社SQL (SQL Server)</th>
-                    <th>SQLite</th>
-                    <th>M社Access</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>アーキテクチャ・データモデル</td>
-                    <td class="sds-col">JSONドキュメントベース<br>(NoSQL特化型)</td>
-                    <td>RDBMS</td>
-                    <td>ORDBMS</td>
-                    <td>RDBMS</td>
-                    <td>RDBMS</td>
-                    <td>組み込み型 RDBMS</td>
-                    <td>デスクトップ RDBMS</td>
-                </tr>
-                <tr>
-                    <td>クエリ言語</td>
-                    <td class="sds-col">S-DQL<br>(メソッドチェーン/AST型)</td>
-                    <td>SQL</td>
-                    <td>SQL</td>
-                    <td>SQL, PL/SQL</td>
-                    <td>SQL, T-SQL</td>
-                    <td>SQL</td>
-                    <td>SQL, VBA</td>
-                </tr>
-                <tr>
-                    <td>メモリ保護<br>(Data in Use)</td>
-                    <td class="sds-col"><span class="badge">God-Tier</span><br>Zero-Dwell Memory<br>+ TEE (隔離領域実行)</td>
-                    <td>標準 (OS・ハードウェア依存)</td>
-                    <td>標準 (OS・ハードウェア依存)</td>
-                    <td>標準<br>(DB In-Memoryは高速化目的)</td>
-                    <td>Always Encrypted<br>(VBS Enclaves対応)</td>
-                    <td>標準</td>
-                    <td>標準</td>
-                </tr>
-                <tr>
-                    <td>ネットワーク通信保護<br>(Data in Transit)</td>
-                    <td class="sds-col"><span class="badge">God-Tier</span><br>SPA + ポリモーフィック変異<br>+ RSA-OAEP</td>
-                    <td>TLS/SSL</td>
-                    <td>TLS/SSL</td>
-                    <td>TLS/SSL<br>Oracle Net Security</td>
-                    <td>TLS/SSL</td>
-                    <td>なし<br>(ローカルファイルアクセス)</td>
-                    <td>SMB (ファイル共有プロトコル)</td>
-                </tr>
-                <tr>
-                    <td>ストレージ暗号化<br>(Data at Rest)</td>
-                    <td class="sds-col"><span class="badge">God-Tier</span><br>RHO Algorism (確率的暗号化)<br>+ Merkleハッシュ証明</td>
-                    <td>TDE (透過的データ暗号化)</td>
-                    <td>TDE / pgcrypto (拡張)</td>
-                    <td>Advanced Security<br>(TDE / Data Redaction)</td>
-                    <td>TDE / Always Encrypted</td>
-                    <td>SEE / SQLCipher<br>(拡張機能)</td>
-                    <td>データベースパスワード</td>
-                </tr>
-                <tr>
-                    <td>SQLインジェクション耐性</td>
-                    <td class="sds-col">物理的に不可能<br>(SQL構文非依存・AST検証)</td>
-                    <td>プレースホルダによる対策必須</td>
-                    <td>プレースホルダによる対策必須</td>
-                    <td>プレースホルダによる対策必須</td>
-                    <td>プレースホルダによる対策必須</td>
-                    <td>プレースホルダによる対策必須</td>
-                    <td>アプリ実装に依存</td>
-                </tr>
-                <tr>
-                    <td>暗号化データの検索メカニズム</td>
-                    <td class="sds-col">FHE (準同型暗号) 演算<br>または RHOオンザフライ復号</td>
-                    <td>平文インデックス検索</td>
-                    <td>平文インデックス検索</td>
-                    <td>平文インデックス検索</td>
-                    <td>エンクレーブ内検索 /<br>決定論的暗号検索</td>
-                    <td>平文インデックス検索</td>
-                    <td>平文検索</td>
-                </tr>
-                <tr>
-                    <td>破壊的変更の承認</td>
-                    <td class="sds-col">Quorum (M of N) マルチシグ要求</td>
-                    <td>単一の管理者権限で実行可能</td>
-                    <td>単一の管理者権限で実行可能</td>
-                    <td>単一の管理者権限で実行可能</td>
-                    <td>単一の管理者権限で実行可能</td>
-                    <td>単一の管理者権限で実行可能</td>
-                    <td>制限なし</td>
-                </tr>
-                <tr>
-                    <td>主なターゲット層・用途</td>
-                    <td class="sds-col"><strong>国家機密, CBDC, 軍事基盤,<br>極秘インフラシステム</strong></td>
-                    <td>汎用Webアプリ, 中規模システム</td>
-                    <td>エンタープライズWeb, データ分析</td>
-                    <td>大規模基幹システム, 銀行コア</td>
-                    <td>企業内システム, Windows基盤</td>
-                    <td>モバイルアプリ, IoT, エッジ</td>
-                    <td>個人用途, 小規模オフィスの事務</td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>比較項目</th>
+                        <th>MySQL / PostgreSQL</th>
+                        <th>O社 (Oracle)</th>
+                        <th>M社SQL (SQL Server)</th>
+                        <th>SQLite</th>
+                        <th>M社Access</th>
+                        <th>SDS (Secure Database Script)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>データモデル</td>
+                        <td>RDBMS (リレーショナル)</td>
+                        <td>RDBMS (エンタープライズ)</td>
+                        <td>RDBMS (エンタープライズ)</td>
+                        <td>軽量RDBMS (ファイル型)</td>
+                        <td>デスクトップRDBMS</td>
+                        <td class="highlight">独自JSONドキュメント</td>
+                    </tr>
+                    <tr>
+                        <td>保存時の暗号化<br>(Data at Rest)</td>
+                        <td>TDE (オプション設定)</td>
+                        <td>高度なTDEに対応</td>
+                        <td>TDE / Always Encrypted</td>
+                        <td>SQLCipher等(拡張依存)</td>
+                        <td>ファイルパスワード保護</td>
+                        <td class="highlight">RHO Algorism<br>(確率的暗号化・標準強制)</td>
+                    </tr>
+                    <tr>
+                        <td>通信時の保護<br>(Data in Transit)</td>
+                        <td>標準TLS/SSL接続</td>
+                        <td>TLS / 独自プロトコル対応</td>
+                        <td>標準TLS/SSL接続</td>
+                        <td>なし (ローカル完結)</td>
+                        <td>なし (ローカル/SMB共有)</td>
+                        <td class="highlight">SPA + 独自ポリモーフィック変異 + RSA-OAEP</td>
+                    </tr>
+                    <tr>
+                        <td>メモリ上の保護<br>(Data in Use)</td>
+                        <td class="warning">メモリダンプで平文露出</td>
+                        <td>一部対応(専用ハード依存)</td>
+                        <td>Always Encrypted (エンクレーブ)</td>
+                        <td class="warning">平文展開</td>
+                        <td class="warning">平文展開</td>
+                        <td class="highlight">Zero-Dwell Memory<br>(即時破棄・FHE演算)</td>
+                    </tr>
+                    <tr>
+                        <td>インジェクション耐性</td>
+                        <td>プリペアドステートメント依存</td>
+                        <td>プリペアドステートメント依存</td>
+                        <td>プリペアドステートメント依存</td>
+                        <td>プリペアドステートメント依存</td>
+                        <td class="warning">VBAマクロ等の脆弱性リスク</td>
+                        <td class="highlight">ASTハッシュ検証により<br>構造的に完全排除</td>
+                    </tr>
+                    <tr>
+                        <td>アクセス・権限制御</td>
+                        <td>DBユーザー/ロールベース</td>
+                        <td>高度な粒度の権限管理</td>
+                        <td>AD連携/ロールベース</td>
+                        <td>OSのファイル権限依存</td>
+                        <td>OS権限/簡易パスワード</td>
+                        <td class="highlight">マルチシグ (M of N) 承認<br>+ TEE/TPM検証</td>
+                    </tr>
+                    <tr>
+                        <td>主要な用途</td>
+                        <td>汎用的なWebシステム等</td>
+                        <td>大規模な基幹システム</td>
+                        <td>企業向け業務システム</td>
+                        <td>アプリ内蔵 / エッジ端末</td>
+                        <td>個人・小規模オフィス業務</td>
+                        <td class="highlight">機密データ保護 / ゼロトラスト環境のコア基盤</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
+        </div>
 
         <footer>
 
