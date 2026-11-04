@@ -20,6 +20,11 @@
     .table-responsive {
       width: 100%;
       border-radius: 12px; /* テーブル自体の角丸 */
+      
+      /* --- ここから追加 --- */
+      overflow-x: auto; /* 横スクロールを有効にする */
+      -webkit-overflow-scrolling: touch; /* iOS（iPhone）で滑らかにスクロールさせるための指定 */
+      /* --- ここまで追加 --- */
     }
 
     /* テーブルの基本スタイル */
