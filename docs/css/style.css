@@ -215,10 +215,10 @@ body {
       justify-content: space-between;
       max-width: 1000px; /* 全体の最大横幅 */
       margin: 0 auto; /* 画面中央に配置 */
-      background-color: #e0f4ff; /* 画像のような優しい薄水色 */
+      background-color:aliceblue;
       padding: 40px;
       border-radius: 24px; /* 四隅のなめらかな丸み */
-      border: 2px solid #b3d7ff; /* うっすらとした外枠の境界線（お好みで） */
+      border: none;
       box-sizing: border-box;
       gap: 40px; /* 画像とテキストエリアの間の余白 */
     }
@@ -227,6 +227,7 @@ body {
     .hero-image-box {
       flex: 1; /* 幅を均等に分ける */
       min-width: 300px;
+      border-radius: 24px; /* 四隅のなめらかな丸み */
     }
 
     .hero-image-box img {
