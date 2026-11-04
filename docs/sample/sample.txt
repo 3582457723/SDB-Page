@@ -1,12 +1,12 @@
 // =========================================================
-//  GOD-TIER SECURE I/O PIPELINE ARCHITECTURE
+//  SDS (Secure Database Script) ARCHITECTURE
 // =========================================================
 
-[NETWORK_EDGE] // 1. ステルスネットワーク層
+[NETWORK_EDGE]
 // 事前承認されたSPA(Single Packet Authorization)を持つパケットのみFWを通過
 firewall.accept(spa_payload_valid: true)
 
-[TEE_ENCLAVE_ENTRY] // 2. コンフィデンシャル・コンピューティング領域への突入
+[TEE_ENCLAVE_ENTRY]
 // これ以降の全処理はCPUの暗号化隔離メモリ（Intel SGX等）内で実行
 enclave.verify(
   Client_Cert: "x509_cert_pem...",
@@ -23,20 +23,21 @@ packet.verify_signature(algo: "rsa-sha256", key: client_public_key)
 packet = rsa.decrypt(padding: "oaep", vector: true, key: server_private_key, data: packet)
 
 [DECODE] // 4. 独自ポリモーフィック層の復元（アンチ・ファジング）
-command = reject(1,last & fast, packet)
-command = revese(1to0 & 0to1, command)
+command = reject(1, last AND fast, packet)
+command = revese(1to0 AND 0to1, command)
 command = (convert(2to10, command)) - (convert(2to10, command)).renge
 command = convert(10to36, command)
 
 // ---------------------------------------------------------
-//  ▼ CORE ENGINE (データベース実行)
+//  ▼ CORE ENGINE (SDS 実行エンジン)
 // ---------------------------------------------------------
 
-[GATE_&_EXECUTION] // 5. 権限検証とセキュア実行
+[GATE_AND_EXECUTION] // 5. 権限検証とセキュア実行
 command.check(include[delete, write, update, high_volume_read]) {
   role.check(admin) {
     // AST構造ハッシュの完全一致チェック
     ast.verify_hash(expected_hash: "a9b8c7d6...") {
+      
       // 破壊的変更の場合はマルチシグ(M of N)を要求
       quorum.require(signatures: 2, roles: [ciso, auditor]) {
         
@@ -47,6 +48,9 @@ command.check(include[delete, write, update, high_volume_read]) {
         
       }
     }
+  } else ip(!include.whitelist) {
+    add.firewall(ip)
+    block
   }
 }
 
@@ -58,8 +62,8 @@ command.check(include[delete, write, update, high_volume_read]) {
 response = convert(36to10, result)
 response = response + response.renge
 response = convert(10to2, response)
-response = revese(1to0 & 0to1, response)
-response = add(1,last & fast, response)
+response = revese(1to0 AND 0to1, response)
+response = add(1, last AND fast, response)
 
 [TRANSMIT] // 7. 外殻暗号の再適用とサーバー証明
 packet = rsa.encrypt(padding: "oaep", vector: true, key: client_public_key, data: response)
