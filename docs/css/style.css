@@ -114,6 +114,9 @@ body {
     .hero {
       border-radius: 8px; /* 両端を完全な丸みにする */
       background-color: aliceblue;
+      max-width: 1000px; /* 全体の最大横幅 */
+      display: flex;
+      align-items: center;
     }
 
     .hero-item {
@@ -306,9 +309,12 @@ body {
             background-color: #f4f4f4;
             border: 1px solid #ddd;
             padding: 15px;
-            border-radius: 5px;
+            border-radius: 8px;
             overflow-x: auto;
         }
-        code {
-            font-family: 'Courier New', Courier, monospace;
-        }
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      border-radius: 8px;
+      background-color: #000000;
+      color: #ffffff;
+    }
