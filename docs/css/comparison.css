@@ -1,0 +1,90 @@
+.comparison-section {
+      max-width: 1100px; /* 全体の最大横幅 */
+      margin: 0 auto;
+      background-color: #e0f4ff; /* 画像ベースの薄水色 */
+      padding: 40px 30px;
+      border-radius: 24px;
+      box-sizing: border-box;
+    }
+
+    /* セクションタイトル */
+    .comparison-title {
+      font-size: 48px;
+      font-weight: 700;
+      color: #000000;
+      text-align: center;
+      margin: 0 0 35px 0;
+    }
+
+    /* スマホ等で表がはみ出さないためのスクロールコンテナ */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 12px; /* テーブル自体の角丸 */
+    }
+
+    /* テーブルの基本スタイル */
+    .comparison-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 3px; /* セル同士の隙間を画像の雰囲気に合わせる */
+      font-size: 13px;
+      min-width: 900px; /* 画面が狭くなっても表の形を維持（スクロールさせる） */
+    }
+
+    /* 全てのセルの共通設定 */
+    .comparison-table th,
+    .comparison-table td {
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    /* ヘッダー行（一番上の行） */
+    .comparison-table thead th {
+      background-color: #ebf1f5;
+      color: #333333;
+      font-weight: bold;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    /* 左端の「比較項目」列のスタイル */
+    .comparison-table tbody th {
+      background-color: #ebf1f5;
+      color: #333333;
+      font-weight: bold;
+      width: 12%;
+    }
+
+    /* 通常のデータセル（薄い水色調） */
+    .comparison-table tbody td {
+      background-color: #e6f2ff;
+      color: #333333;
+      width: 14%;
+    }
+
+    /* 強調（赤文字）のスタイル */
+    .text-alert {
+      color: #dd2222;
+      font-weight: bold;
+    }
+
+    /* ==========================================
+       SDS列（一番右端）の特別スタイル
+    ========================================== */
+    /* SDSのヘッダー（濃い緑） */
+    .comparison-table .col-sds-header {
+      background-color: #22af47;
+      color: #ffffff;
+      width: 18%; /* 他より少し広めに確保 */
+    }
+
+    /* SDSのデータセル（明るい緑） */
+    .comparison-table tbody .col-sds-data {
+      background-color: #cbfad1;
+      color: #005a1a;
+      font-weight: bold;
+    }

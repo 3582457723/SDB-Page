@@ -2,7 +2,9 @@
 <html lang = ja>
     <head>
         <title>SDS Offical Web site</title>
+        <link rel="favicon" href="images/SDS.png">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/comparison.css">
     </head>
     <body>
         <div style="height: 5px;"></div>
@@ -45,89 +47,98 @@
         <hr>
         <div style="height: 25px;"></div>
 
-        <div class="hero">
-            <h2>Comparison</h2>
-            <div class="table-container">
-            <table>
+        <section class="comparison-section">
+            <h2 class="comparison-title">Comparison</h2>
+
+        <!-- レスポンス対応用コンテナ -->
+        <div class="table-responsive">
+            <table class="comparison-table">
                 <thead>
                     <tr>
                         <th>比較項目</th>
-                        <th>MySQL / PostgreSQL</th>
+                        <th>MySQL /<br>PostgreSQL</th>
                         <th>O社 (Oracle)</th>
-                        <th>M社SQL (SQL Server)</th>
+                        <th>M社SQL (SQL<br>Server)</th>
                         <th>SQLite</th>
                         <th>M社Access</th>
-                        <th>SDS (Secure Database Script)</th>
+                        <th class="col-sds-header">SDS (Secure<br>Database Script)</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>データモデル</td>
-                        <td>RDBMS (リレーショナル)</td>
-                        <td>RDBMS (エンタープライズ)</td>
-                        <td>RDBMS (エンタープライズ)</td>
-                        <td>軽量RDBMS (ファイル型)</td>
-                        <td>デスクトップRDBMS</td>
-                        <td class="highlight">独自JSONドキュメント</td>
-                    </tr>
-                    <tr>
-                        <td>保存時の暗号化<br>(Data at Rest)</td>
-                        <td>TDE (オプション設定)</td>
-                        <td>高度なTDEに対応</td>
-                        <td>TDE / Always Encrypted</td>
-                        <td>SQLCipher等(拡張依存)</td>
-                        <td>ファイルパスワード保護</td>
-                        <td class="highlight">RHO Algorism<br>(確率的暗号化・標準強制)</td>
-                    </tr>
-                    <tr>
-                        <td>通信時の保護<br>(Data in Transit)</td>
-                        <td>標準TLS/SSL接続</td>
-                        <td>TLS / 独自プロトコル対応</td>
-                        <td>標準TLS/SSL接続</td>
-                        <td>なし (ローカル完結)</td>
-                        <td>なし (ローカル/SMB共有)</td>
-                        <td class="highlight">SPA + 独自ポリモーフィック変異 + RSA-OAEP</td>
-                    </tr>
-                    <tr>
-                        <td>メモリ上の保護<br>(Data in Use)</td>
-                        <td class="warning">メモリダンプで平文露出</td>
-                        <td>一部対応(専用ハード依存)</td>
-                        <td>Always Encrypted (エンクレーブ)</td>
-                        <td class="warning">平文展開</td>
-                        <td class="warning">平文展開</td>
-                        <td class="highlight">Zero-Dwell Memory<br>(即時破棄・FHE演算)</td>
-                    </tr>
-                    <tr>
-                        <td>インジェクション耐性</td>
-                        <td>プリペアドステートメント依存</td>
-                        <td>プリペアドステートメント依存</td>
-                        <td>プリペアドステートメント依存</td>
-                        <td>プリペアドステートメント依存</td>
-                        <td class="warning">VBAマクロ等の脆弱性リスク</td>
-                        <td class="highlight">ASTハッシュ検証により<br>構造的に完全排除</td>
-                    </tr>
-                    <tr>
-                        <td>アクセス・権限制御</td>
-                        <td>DBユーザー/ロールベース</td>
-                        <td>高度な粒度の権限管理</td>
-                        <td>AD連携/ロールベース</td>
-                        <td>OSのファイル権限依存</td>
-                        <td>OS権限/簡易パスワード</td>
-                        <td class="highlight">マルチシグ (M of N) 承認<br>+ TEE/TPM検証</td>
-                    </tr>
-                    <tr>
-                        <td>主要な用途</td>
-                        <td>汎用的なWebシステム等</td>
-                        <td>大規模な基幹システム</td>
-                        <td>企業向け業務システム</td>
-                        <td>アプリ内蔵 / エッジ端末</td>
-                        <td>個人・小規模オフィス業務</td>
-                        <td class="highlight">機密データ保護 / ゼロトラスト環境のコア基盤</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        </div>
+                    <tbody>
+                        <!-- 1行目 -->
+                        <tr>
+                            <th>データモデル</th>
+                            <td>RDBMS（リレーショナル）</td>
+                            <td>RDBMS（エンタープライズ）</td>
+                            <td>RDBMS（エンタープライズ）</td>
+                            <td>軽量RDBMS（ファイル型）</td>
+                            <td>デスクトップRDBMS</td>
+                            <td class="col-sds-data">独自JSONベース<br>（汎用型）</td>
+                        </tr>
+                        <!-- 2行目 -->
+                        <tr>
+                            <th>保存時の暗号化<br>(Data at Rest)</th>
+                            <td>TDE（オプション設定）</td>
+                            <td>高度なTDEに対応</td>
+                            <td>TDE / Always Encrypted</td>
+                            <td>SQLCipher等（拡張依存）</td>
+                            <td>ファイルパスワード保護</td>
+                            <td class="col-sds-data">RHO Algorism<br>（確率的暗号化・標準強制）</td>
+                        </tr>
+                        <!-- 3行目 -->
+                        <tr>
+                            <th>通信時の保護<br>(Data in Transit)</th>
+                            <td>標準TLS/SSL接続</td>
+                            <td>TLS / 独自プロトコル対応</td>
+                            <td>標準TLS/SSL接続</td>
+                            <td>なし（ローカル完結）</td>
+                            <td>なし（ローカル/SMB共有）</td>
+                            <td class="col-sds-data">SPA + 独自ポリモーフィック変異 + RSA-OAEP</td>
+                        </tr>
+                        <!-- 4行目 -->
+                        <tr>
+                            <th>メモリ上の保護<br>(Data in Use)</th>
+                            <td><span class="text-alert">メモリダンプで平文露出</span></td>
+                            <td>一部対応（専用ハード依存）</td>
+                            <td>Always Encrypted（エンクレーブ）</td>
+                            <td><span class="text-alert">平文展開</span></td>
+                            <td><span class="text-alert">平文展開</span></td>
+                            <td class="col-sds-data">Zero-Dwell Memory<br>（即時破棄・FHE演算）</td>
+                        </tr>
+                        <!-- 5行目 -->
+                        <tr>
+                            <th>インジェクション耐性</th>
+                            <td>プリペアドステートメント依存</td>
+                            <td>プリペアドステートメント依存</td>
+                            <td>プリペアドステートメント依存</td>
+                            <td>プリペアドステートメント依存</td>
+                            <td><span class="text-alert">VBAマクロ等の脆弱性リスク</span></td>
+                            <td class="col-sds-data">ASTハッシュ検証により構造的に完全排除</td>
+                        </tr>
+                        <!-- 6行目 -->
+                        <tr>
+                            <th>アクセス・権限制御</th>
+                            <td>DBユーザー/ロールベース</td>
+                            <td>高度な粒度の権限管理</td>
+                            <td>AD連携/ロールベース</td>
+                            <td>OSのファイル権限依存</td>
+                            <td>OS権限/簡易パスワード</td>
+                            <td class="col-sds-data">マルチシグ（M of N）承認<br>+ TEE/TPM検証</td>
+                        </tr>
+                        <!-- 7行目 -->
+                        <tr>
+                            <th>主要な用途</th>
+                            <td>汎用的なWebシステム等</td>
+                            <td>大規模な基幹システム</td>
+                            <td>企業向け業務システム</td>
+                            <td>アプリ内蔵 / エッジ端末</td>
+                            <td>個人・小規模オフィス業務</td>
+                            <td class="col-sds-data">機密データ保護 / ゼロトラスト環境のコア基盤</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
         <div style="height: 25px;"></div>
         <hr>
