@@ -306,6 +306,10 @@ body {
 
     hr {
       width: 95%;
+      border-radius: 8px;
+      border-color: aquamarine;
+      color: aquamarine;
+      background-color: aquamarine;
     }
 
     pre {

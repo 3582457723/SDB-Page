@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/comparison.css">
         <link rel="stylesheet" href="../css/footer.css">
+        <script src="../script/sample.js" defer></script>
     </head>
     <body>
         <div style="height: 5px;"></div>
@@ -24,25 +25,29 @@
         </nav>
 
     <!-- 購入リクエストボタン -->
-        <a href="../buy/" class="btn-buy">BUY REQUEST</a>
+        <a href="../download/" class="btn-buy">Download</a>
         </header>
 
         <div style="height: 25px;"></div>
         <div class="hero">
+            <div style="height: 25px;"></div>
             <div class="codespace">
                 <pre>
                     <code id="code-content">読み込み中...</code>
                 </pre>
             </div>
+            <div style="height: 25px;"></div>
         </div>
 
         <div style="height: 25px;"></div>
         <div class="hero">
+            <div style="height: 25px;"></div>
             <div class="codespace">
                 <pre>
                     <code id="code-content2">読み込み中...</code>
                 </pre>
             </div>
+            <div style="height: 25px;"></div>
         </div>
 
         <div style="height: 25px;"></div>
@@ -59,7 +64,7 @@
                 <nav class="footer-nav">
                     <a href="../" class="footer-nav-link">Home</a>
                     <a href="../features/" class="footer-nav-link">Features</a>
-                    <a href="../buy/" class="footer-nav-link">Buy request</a>
+                    <a href="../download/" class="footer-nav-link">Download</a>
                     <a href="../faq/" class="footer-nav-link">FAQ</a>
                     <a href="../sample" class="nav-item">Sample</a>
                 </nav>
@@ -83,48 +88,6 @@
         </footer>
     </body>
     <script>
-        // 読み込みたいファイルのパス（同じフォルダにある場合）
-        const filePath = 'server.txt'; 
-
-        // fetchを使ってファイルを取得
-        fetch(filePath)
-            .then(response => {
-                // エラーチェック
-                if (!response.ok) {
-                    throw new Error('ファイルの読み込みに失敗しました: ' + response.statusText);
-                }
-                return response.text(); // テキストとして処理
-            })
-            .then(data => {
-                // コードブロックの要素を取得して中身を書き換える
-                document.getElementById('code-content').textContent = data;
-            })
-            .catch(error => {
-                // エラー時の処理
-                document.getElementById('code-content').textContent = 'エラー: ' + error.message;
-                console.error(error);
-            });
-
-            // 読み込みたいファイルのパス（同じフォルダにある場合）
-        const filePath2 = 'client.txt'; 
-
-        // fetchを使ってファイルを取得
-        fetch(filePath2)
-            .then(response => {
-                // エラーチェック
-                if (!response.ok) {
-                    throw new Error('ファイルの読み込みに失敗しました: ' + response.statusText);
-                }
-                return response.text(); // テキストとして処理
-            })
-            .then(data => {
-                // コードブロックの要素を取得して中身を書き換える
-                document.getElementById('code-content2').textContent = data;
-            })
-            .catch(error => {
-                // エラー時の処理
-                document.getElementById('code-content2').textContent = 'エラー: ' + error.message;
-                console.error(error);
-            });
+        
     </script>
 </html>
