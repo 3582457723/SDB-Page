@@ -5,7 +5,12 @@
   display: flex;
   justify-content: space-between;
   flex-wrap:wrap;
-  
+  display:flex;
+  margin:0;
+  padding:0;
+  min-height: 100vh;
+  align-items: center;
+  font-family: arial;
 }
 
 .container2 .card{
