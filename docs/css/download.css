@@ -1,6 +1,7 @@
 .container2{
   width: 1000px;
   position: relative;
+  gap: 5px;
   display: flex;
   justify-content: space-between;
   flex-wrap:wrap;
