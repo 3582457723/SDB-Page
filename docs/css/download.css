@@ -122,11 +122,12 @@
 }
 
 .hero2 {
-      border-radius: 8px; /* 両端を完全な丸みにする */
-      max-width: 98%; /* 全体の最大横幅 */
-      display: flex;
-      gap: 10px;
-      align-items: center; /* 上下中央揃え */
-      justify-content: space-between;
-      margin: 0 auto; /* 画面中央に配置 */
+  display:flex;
+  margin:0;
+  padding:0;
+  min-height: 100vh;
+  background: #444;
+  justify-content: center;
+  align-items: center;
+  font-family: arial;
 }
