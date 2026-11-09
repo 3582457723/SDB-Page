@@ -3,6 +3,8 @@
   display: flex;
   gap: 25px; /* 各ボックスの隙間 */
   padding: 40px; /* 周りの余白 */
+  align-items: center;
+  justify-content: center;
 }
 
 /* 各OSのボックス（通常時） */
