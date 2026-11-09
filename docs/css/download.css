@@ -1,57 +1,56 @@
-/* 全体を横並びにするラッパー */
-.os-selector-wrapper {
+/* 全体を中央寄せにするラッパー */
+.os-selection-wrapper {
   display: flex;
-  gap: 20px; /* アイテム間の隙間 */
-  justify-content: center;
-  align-items: center;
-  padding: 40px; /* グロー効果が見切れないための余白 */
-  background-color: #f0f0f0; /* 背景（お好みに合わせて削除・変更してください） */
+  justify-content: center; /* 水平方向の中央寄せ */
+  align-items: center;     /* 垂直方向の中央寄せ */
+  gap: 20px;               /* 各項目の間の余白 */
+  padding: 50px;
 }
 
-/* 各OSの選択アイテム（通常時：ダークグレー） */
+/* 各OSのブロック（通常時のダークデザイン） */
 .os-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 170px;
+  width: 160px;
   height: 120px;
-  background: linear-gradient(to bottom, #4a4a4a, #333333); /* 画像のような少し立体感のあるダークグレー */
-  border-radius: 12px; /* 丸みを持たせる */
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4); /* 通常時のドロップシャドウ */
+  background: linear-gradient(180deg, #555555 0%, #333333 100%); /* 通常時の暗いグラデーション */
+  border-radius: 12px;
+  color: #ffffff;
+  font-family: sans-serif;
   cursor: pointer;
-  transition: all 0.3s ease; /* ホバー時のアニメーションを滑らかにする */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4); /* 通常時のドロップシャドウ */
+  transition: all 0.3s ease; /* ホバー時の変化を滑らかにする */
+  box-sizing: border-box;
+}
+
+/* 
+  ホバー時のエフェクト（ネオングラデーション＋グロー）
+  左のWindowsボタンのデザインを再現
+*/
+.os-item:hover {
+  /* マゼンタからブルーへのグラデーション */
+  background: linear-gradient(135deg, #f900ff 0%, #585cff 100%);
+  
+  /* シアン色（水色）のネオングロー効果と、少しの浮き上がりシャドウ */
+  box-shadow: 0 0 25px 5px rgba(0, 255, 255, 0.5), 
+              0 10px 15px rgba(0, 0, 0, 0.2);
+              
+  transform: translateY(-2px); /* ホバー時に少しだけ上に浮かす（不要なら削除可） */
 }
 
 /* アイコン画像のスタイル */
 .os-icon {
-  width: 45px; /* 用意した画像に合わせて調整してください */
-  height: auto;
-  margin-bottom: 10px;
-  /* 画像が黒い場合は以下を使って白に反転できます（すでに白い画像なら不要です） */
-  /* filter: brightness(0) invert(1); */
+  width: 45px;          /* アイコンのサイズ（必要に応じて調整） */
+  height: 45px;
+  object-fit: contain;
+  margin-bottom: 12px;  /* 文字との間隔 */
 }
 
-/* テキストのスタイル */
-.os-text {
-  color: #ffffff;
-  font-family: sans-serif;
+/* OS名のテキストスタイル */
+.os-title {
   font-size: 18px;
-  font-weight: bold;
-}
-
-/* =======================================
-   ホバー時のスタイル（ネオンカラー・グロー・拡大）
-======================================= */
-.os-item:hover {
-  /* マゼンタから紫/青へのネオングラデーション */
-  background: linear-gradient(to right, #df00ff, #5e61ff);
-  
-  /* 拡大アニメーション */
-  transform: scale(1.08);
-  
-  /* ネオンのグロー効果（青とシアンの光を重ねて発光させる） */
-  box-shadow: 
-    0 15px 25px rgba(94, 97, 255, 0.5), /* 下方向の青い影 */
-    0 0 20px rgba(0, 255, 255, 0.4);   /* 周囲に広がるシアンの光 */
+  font-weight: 700;     /* 太字 */
+  letter-spacing: 0.5px;
 }
