@@ -1,108 +1,57 @@
 /* 全体を横並びにするラッパー */
-.os-wrapper {
+.os-selector-wrapper {
   display: flex;
-  gap: 20px;
+  gap: 20px; /* アイテム間の隙間 */
+  justify-content: center;
   align-items: center;
-  padding: 40px; /* 見やすさのための余白 */
+  padding: 40px; /* グロー効果が見切れないための余白 */
+  background-color: #f0f0f0; /* 背景（お好みに合わせて削除・変更してください） */
 }
 
-/* 各項目の通常時のスタイル（MacやLinuxの状態） */
+/* 各OSの選択アイテム（通常時：ダークグレー） */
 .os-item {
-  position: relative;
-  width: 160px;
-  height: 120px;
-  background: linear-gradient(to bottom, #595959, #363636); /* ダークグレーのグラデーション */
-  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 120px;
+  background: linear-gradient(to bottom, #4a4a4a, #333333); /* 画像のような少し立体感のあるダークグレー */
+  border-radius: 12px; /* 丸みを持たせる */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4); /* 通常時のドロップシャドウ */
+  cursor: pointer;
+  transition: all 0.3s ease; /* ホバー時のアニメーションを滑らかにする */
+}
+
+/* アイコン画像のスタイル */
+.os-icon {
+  width: 45px; /* 用意した画像に合わせて調整してください */
+  height: auto;
+  margin-bottom: 10px;
+  /* 画像が黒い場合は以下を使って白に反転できます（すでに白い画像なら不要です） */
+  /* filter: brightness(0) invert(1); */
+}
+
+/* テキストのスタイル */
+.os-text {
   color: #ffffff;
   font-family: sans-serif;
+  font-size: 18px;
   font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4); /* 通常時のドロップシャドウ */
-  
-  /* 滑らかな変化（拡大、影の遷移用） */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  z-index: 1; /* 重なり順を管理（背景用レイヤーより上にするため） */
 }
 
-/* ホバー時のネオン背景レイヤー（透明度0で準備しておく） */
-.os-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 12px;
-  
-  /* マゼンタからブルー、シアンへのネオングラデーション */
-  background: linear-gradient(60deg, #ff00ff, #5c5cff, #00ffff, #ff00ff);
-  background-size: 300% 300%;
-  
-  opacity: 0; /* 通常時は見えない状態 */
-  transition: opacity 0.3s ease; /* ホバー時にフワッと表示させる */
-  z-index: -1; /* 文字や画像の下に配置 */
-}
-
-/* アイコン枠の調整 */
-.os-icon {
-  margin-bottom: 8px;
-}
-
-/* ご用意された画像のサイズ調整 */
-.os-icon img {
-  width: 50px;
-  height: auto;
-  display: block;
-}
-
-
-/* =========================================
-   ホバー時のアクションとアニメーション
-========================================= */
-
-/* 1. 全体の拡大とグロー（外側の光）の常時アニメーション */
+/* =======================================
+   ホバー時のスタイル（ネオンカラー・グロー・拡大）
+======================================= */
 .os-item:hover {
-  transform: scale(1.06); /* 多少拡大 */
-  animation: glow-pulse 2s infinite alternate; /* 光が明滅するループアニメーション */
-}
-
-/* 2. ネオン背景の表示と流れる常時アニメーション */
-.os-item:hover::before {
-  opacity: 1;
-  animation: neon-flow 3s ease infinite; /* グラデーションが動くループアニメーション */
-}
-
-
-/* =========================================
-   キーフレーム（アニメーションの動きの定義）
-========================================= */
-
-/* グロー（外側の光）をフワフワと明滅させる */
-@keyframes glow-pulse {
-  0% {
-    /* 控えめな光 */
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4), 0 10px 15px rgba(0, 0, 0, 0.4);
-  }
-  100% {
-    /* 強い光に広がる */
-    box-shadow: 0 0 35px rgba(0, 255, 255, 0.9), 0 10px 15px rgba(0, 0, 0, 0.4);
-  }
-}
-
-/* 背景のネオングラデーションを横に流す */
-@keyframes neon-flow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  /* マゼンタから紫/青へのネオングラデーション */
+  background: linear-gradient(to right, #df00ff, #5e61ff);
+  
+  /* 拡大アニメーション */
+  transform: scale(1.08);
+  
+  /* ネオンのグロー効果（青とシアンの光を重ねて発光させる） */
+  box-shadow: 
+    0 15px 25px rgba(94, 97, 255, 0.5), /* 下方向の青い影 */
+    0 0 20px rgba(0, 255, 255, 0.4);   /* 周囲に広がるシアンの光 */
 }
