@@ -1,107 +1,70 @@
 /* 全体を横並びにするラッパー */
 .os-wrapper {
   display: flex;
-  gap: 25px;
-  padding: 40px; /* ネオンの光が切れないように余白を確保 */
+  gap: 25px; /* 各ボックスの隙間 */
+  padding: 40px; /* 周りの余白（お好みで調整） */
 }
 
 /* 各OSのボックス（通常時） */
 .os-box {
-  position: relative; /* 疑似要素の基準点 */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 170px;
   height: 140px;
+  /* 画像のMacやLinuxのようなダークグレーのグラデーション */
   background: linear-gradient(to bottom, #525252, #3a3a3a);
   border-radius: 12px;
+  /* 通常時の影 */
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
   cursor: pointer;
-  /* 拡大と影の初期アニメーションを滑らかにする */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  z-index: 1;
-}
-
-/* グラデーション背景を滑らかに表示するための疑似要素 */
-.os-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, #f000ff 0%, #4758ff 100%);
-  border-radius: 12px;
-  opacity: 0; /* 通常時は透明にして見えなくする */
-  z-index: -1; /* 文字や画像の後ろに配置 */
-  transition: opacity 0.3s ease; /* 透明度を滑らかに変化 */
-}
-
-/* ================================
-   ホバー時のアクション
-================================ */
-
-/* 1. 全体を少し拡大 ＆ ネオンの常時アニメーションを付与 */
-.os-box:hover {
-  transform: scale(1.05); /* 1.05倍に拡大 */
-  /* neon-pulseアニメーションを1.5秒かけて無限に往復（alternate）させる */
-  animation: neon-pulse 1.5s ease-in-out infinite alternate;
-}
-
-/* 2. マゼンタ〜青のグラデーション背景をフワッと表示 */
-.os-box:hover::before {
-  opacity: 1;
-}
-
-/* 3. アイコンをほんの少し上に浮かす（おまけの演出。不要なら削除OK） */
-.os-box:hover .os-img {
-  transform: translateY(-3px);
-}
-
-
-/* ================================
-   中身のスタイル
-================================ */
-
-/* 画像や文字が背景の後ろに隠れないようにする */
-.os-img,
-.os-label {
-  position: relative;
-  z-index: 2;
-}
-
-.os-img {
-  width: 50px;
-  height: auto;
-  margin-bottom: 12px;
+  
+  /* 拡大（transform）などの変化を0.3秒で滑らかに行う */
   transition: transform 0.3s ease;
 }
 
+/* ホバー時のスタイル */
+.os-box:hover {
+  /* マゼンタからブルーへのグラデーション */
+  background: linear-gradient(135deg, #f000ff 0%, #4758ff 100%);
+  
+  /* 【追加】ホバー時に少し拡大する（1.05倍） */
+  transform: scale(1.05);
+  
+  /* 【追加】ネオンの常時アニメーションを呼び出す（1.2秒かけて無限に往復） */
+  animation: neonPulse 1.2s ease-in-out infinite alternate;
+}
+
+/* 【追加】ネオンが常時明滅するアニメーション（@keyframes） */
+@keyframes neonPulse {
+  0% {
+    /* 弱い発光状態 */
+    box-shadow: 
+      0 0 15px rgba(0, 255, 255, 0.4), /* 内側の光 */
+      0 0 30px rgba(0, 255, 255, 0.2), /* 外側の光 */
+      0 10px 15px rgba(0, 0, 0, 0.4);  /* 下部の物理的な影 */
+  }
+  100% {
+    /* 強い発光状態 */
+    box-shadow: 
+      0 0 30px rgba(0, 255, 255, 0.9), /* 内側の光が強くなる */
+      0 0 60px rgba(0, 255, 255, 0.6), /* 外側の光が広がる */
+      0 15px 25px rgba(0, 0, 0, 0.3);  /* 拡大に合わせて少し影を落とす */
+  }
+}
+
+/* アイコン画像のスタイル */
+.os-img {
+  width: 50px; /* 用意した画像サイズに合わせて調整してください */
+  height: auto;
+  margin-bottom: 12px;
+}
+
+/* テキストラベルのスタイル */
 .os-label {
   color: #ffffff;
   font-family: sans-serif;
   font-size: 20px;
   font-weight: 700;
-}
-
-/* ================================
-   常時アニメーション（ネオンの鼓動）
-================================ */
-@keyframes neon-pulse {
-  0% {
-    /* 光が弱い状態 */
-    box-shadow: 
-      0 0 15px rgba(0, 255, 255, 0.4),
-      0 0 30px rgba(0, 255, 255, 0.2),
-      0 10px 15px rgba(0, 0, 0, 0.4); /* ベースの黒い影 */
-  }
-  100% {
-    /* 光が強い状態（ぼかしを大きく、色を濃く） */
-    box-shadow: 
-      0 0 25px rgba(0, 255, 255, 0.8),
-      0 0 50px rgba(0, 255, 255, 0.5),
-      0 0 80px rgba(0, 255, 255, 0.3),
-      0 15px 20px rgba(0, 0, 0, 0.3); /* 浮いた分、黒い影も調整 */
-  }
 }
