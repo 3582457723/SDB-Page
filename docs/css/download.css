@@ -1,90 +1,108 @@
-/* 全体をまとめるラッパー（横並びと余白調整用） */
+/* 全体を横並びにするラッパー */
 .os-wrapper {
   display: flex;
-  gap: 20px; /* ボックス間の隙間 */
-  justify-content: center;
+  gap: 20px;
   align-items: center;
-  padding: 40px;
+  padding: 40px; /* 見やすさのための余白 */
 }
 
-/* 各OSのボックス本体 */
-.os-box {
+/* 各項目の通常時のスタイル（MacやLinuxの状態） */
+.os-item {
   position: relative;
+  width: 160px;
+  height: 120px;
+  background: linear-gradient(to bottom, #595959, #363636); /* ダークグレーのグラデーション */
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 170px;
-  height: 120px;
-  border-radius: 12px;
-  background: linear-gradient(to bottom, #525252, #303030); /* 通常時の暗いグラデーション */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4); /* 通常時の影 */
-  cursor: pointer;
-  transition: transform 0.3s ease; /* 拡大のトランジション */
-  z-index: 1;
-}
-
-/* ホバー時の美しいグラデーション（透明度でフェードインさせるための疑似要素） */
-.os-box::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: 12px;
-  /* 画像のWindowsボタンのような紫〜青のグラデーション */
-  background: linear-gradient(135deg, #d400ff, #5065ff);
-  opacity: 0; /* 通常時は見えない */
-  transition: opacity 0.3s ease;
-  z-index: 0; /* 文字やアイコンの下に配置 */
-}
-
-/* アイコンとテキストは疑似要素（背景）より手前に出す */
-.os-icon,
-.os-text {
-  position: relative;
-  z-index: 1;
-}
-
-/* アイコン画像のサイズ設定 */
-.os-icon {
-  height: 42px; /* お手持ちの画像に合わせて調整してください */
-  width: auto;
-  margin-bottom: 10px;
-}
-
-/* テキストのスタイル */
-.os-text {
   color: #ffffff;
   font-family: sans-serif;
-  font-size: 18px;
   font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4); /* 通常時のドロップシャドウ */
+  
+  /* 滑らかな変化（拡大、影の遷移用） */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1; /* 重なり順を管理（背景用レイヤーより上にするため） */
 }
 
-/* ============================
-   ホバー時のアニメーション
-============================ */
-
-/* 1. 多少拡大 ＆ ネオンの常時アニメーションを発動 */
-.os-box:hover {
-  transform: scale(1.05); /* 1.05倍に拡大 */
-  animation: neonGlow 1.5s ease-in-out infinite alternate; /* 1.5秒かけて行ったり来たりを無限ループ */
+/* ホバー時のネオン背景レイヤー（透明度0で準備しておく） */
+.os-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  
+  /* マゼンタからブルー、シアンへのネオングラデーション */
+  background: linear-gradient(60deg, #ff00ff, #5c5cff, #00ffff, #ff00ff);
+  background-size: 300% 300%;
+  
+  opacity: 0; /* 通常時は見えない状態 */
+  transition: opacity 0.3s ease; /* ホバー時にフワッと表示させる */
+  z-index: -1; /* 文字や画像の下に配置 */
 }
 
-/* 2. 背景を紫〜青のグラデーションに切り替え */
-.os-box:hover::before {
+/* アイコン枠の調整 */
+.os-icon {
+  margin-bottom: 8px;
+}
+
+/* ご用意された画像のサイズ調整 */
+.os-icon img {
+  width: 50px;
+  height: auto;
+  display: block;
+}
+
+
+/* =========================================
+   ホバー時のアクションとアニメーション
+========================================= */
+
+/* 1. 全体の拡大とグロー（外側の光）の常時アニメーション */
+.os-item:hover {
+  transform: scale(1.06); /* 多少拡大 */
+  animation: glow-pulse 2s infinite alternate; /* 光が明滅するループアニメーション */
+}
+
+/* 2. ネオン背景の表示と流れる常時アニメーション */
+.os-item:hover::before {
   opacity: 1;
+  animation: neon-flow 3s ease infinite; /* グラデーションが動くループアニメーション */
 }
 
-/* 3. ネオンの常時アニメーション（シアン系の光が脈打つ） */
-@keyframes neonGlow {
+
+/* =========================================
+   キーフレーム（アニメーションの動きの定義）
+========================================= */
+
+/* グロー（外側の光）をフワフワと明滅させる */
+@keyframes glow-pulse {
   0% {
-    /* 弱めの発光 */
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 
-                0 5px 15px rgba(0, 0, 0, 0.3);
+    /* 控えめな光 */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4), 0 10px 15px rgba(0, 0, 0, 0.4);
   }
   100% {
-    /* 強めの発光（ぼかしを大きく広げる） */
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 
-                0 0 45px rgba(0, 255, 255, 0.5), 
-                0 10px 20px rgba(0, 0, 0, 0.2);
+    /* 強い光に広がる */
+    box-shadow: 0 0 35px rgba(0, 255, 255, 0.9), 0 10px 15px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* 背景のネオングラデーションを横に流す */
+@keyframes neon-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
